@@ -2,6 +2,23 @@ Ajax-Assignment
 ===============
 In this assignment you will do two things. The first is to make a simple Ajax and Local Storage library that can easily be tested the other is to implement a custom weather display page that can remember the users configuration between visits.
 
+General Information
+-------------------
+
+Your code should have the following directory structure. You will only put code in the src folder. When we write tests, you will put them in your tests folder. You will have more files than `studentlibrary.js` howevever, that is the file the autmotated tests will run on. It should have the functions from the `Library` section alond with any needed helper functions. All other code for the `Weather` portion also will go in the src directory, but will be put in files your create.
+
+- Repository root
+  - Assignment4
+    - src
+      - studentlibrary.js
+    - tests
+
+We will test using gjslint however, the following changes will be made. We will use the `--nojsdoc` flag so you will not get warnings about using JSDoc formatting to document your code (but it is good practice, so feel free to do so if you want to).
+
+Google Style Guide conflicts with JSLint on one point. JSLint wants a space between `function` and `()` when declaring anonymous functions. Google Style Guide does not permit that space. Last week we ignored this difference. For this week there can be no space betwen them. This is correct `function(foo, bar)`. This is not `function (foo, bar)`.
+
+When you are done, the final commit should have the exact commit message 'Assignment 4 final commit.'. We will look for the code assoicated with this commit when grading. The code provided in that commit must exactly match the public hosted code that students will use to test your weather application.
+
 Library
 -------
 The main Ajax function in your library should be a function called `ajaxRequest(URL, Type, Parameters)`. The URL is the base URL that the request will be made to (eg. http://foo.com/page.php). Type will be either the string 'POST' or 'GET' depending on if it is a POST or GET request. Parameters will be an object containing pairs of strings that are key value pairs. So the object literal `{'name':'sally','profession':'doctor'}` would be a valid input parameter `{'doStuff':function (){...}}` would not be legal because a function is not a string. Likewise `{'item':'book','count':50}` would not be legal because 50 is not a string.
@@ -27,7 +44,7 @@ Automated tests will follow later in the week.
 
 Weather
 -------
-This portion of the assignment is less specific in its requirements. It will use [OpenWeatherMap](http://openweathermap.org/api) as a source of data. Your requirement is to let the user input a city and state as well as select from a number of weather measurements to display. It will be graded using a manual testing protocol by 3 of your classmates. (So that means you will also be manually testing 3 other students sites)
+This portion of the assignment is less specific in its requirements. It will use [OpenWeatherMap](http://openweathermap.org/api) as a source of data. Your requirement is to let the user input a city and state as well as select from a number of weather measurements to display. Users can save their settings and when they return they should be automatically loaded. It will be graded using a manual testing protocol by 3 of your classmates. (So that means you will also be manually testing 3 other students sites) Refer to the testing protocol below to see what exact functionality you need.
 
 Weather Testing Protocol
 ------------------------
