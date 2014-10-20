@@ -28,3 +28,46 @@ Automated tests will follow later in the week.
 Weather
 -------
 This portion of the assignment is less specific in its requirements. It will use [OpenWeatherMap](http://openweathermap.org/api) as a source of data. Your requirement is to let the user input a city and state as well as select from a number of weather measurements to display. It will be graded using a manual testing protocol by 3 of your classmates. (So that means you will also be manually testing 3 other students sites)
+
+Weather Testing Protocol
+------------------------
+-Does the page have a text input for a city name?
+-Does the page have a drop down input to select a state?
+-Does the drop down have at least the states WA, OR and CA?
+-Does the page have the following check boxes?
+  -Wind
+  -Max Temperature
+  -Min Temperature
+  -Current temperature
+-Does the page have a button labeled 'Save Settings'?
+-Does the page have a button labeled 'Get Weather'?
+-Input Corvallis into the city text box and select OR from the state drop down.
+-Check the wind, current temperature, max temperature and min temperature boxes.
+-Click save settings.
+-Open a new tab in your browser and navigate back to the page.
+-Is the City field populated with Corvallis?
+-Is the State field populated with OR?
+-Are all the check boxes still checked?
+-Uncheck max temperature
+-Click 'Save Settings'
+-Open a new tab and navigate back to the page
+-Are all the settings as before the same except that max temperature is still unchecked?
+-Click 'Get Weather'
+-Does a list of weather appear on the page containing the following information?
+  -City
+  -State
+  -Current wind direction and speed
+  -Minimum temperature
+  -Current temperature
+-Open (OpenWeatherMap Corvallis)[http://openweathermap.org/city/5720727]
+  -Does the weather listed seem to match the information provided on OpenWeatherMap?
+-Input 'Seattle' into the city selection.
+-Select 'WA' from the drop down.
+  -Uncheck everything but wind
+-Click 'Get Weather'
+  -Has the list been replaced by a new list?
+  -Does the new list contain the following?
+    -City
+    -State
+    -Current wind direction and speed
+  -Do those values seem to match the values at (OpenWeatherMap Seattle)[http://openweathermap.org/city/5809844]?
