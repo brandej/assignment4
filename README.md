@@ -19,6 +19,10 @@ Google Style Guide conflicts with JSLint on one point. JSLint wants a space betw
 
 When you are done, the final commit should have the exact commit message 'Assignment 4 final commit.'. We will look for the code assoicated with this commit when grading. The code provided in that commit must exactly match the public hosted code that students will use to test your weather application.
 
+Getting an A
+------------
+To be eligible to get an A you must complete the tests of 3 other students pages. It will not get you any extra points to do so, but if you do not do so your grade will be capped at a B for the assignment.
+
 Library
 -------
 The main Ajax function in your library should be a function called `ajaxRequest(URL, Type, Parameters)`. The URL is the base URL that the request will be made to (eg. http://foo.com/page.php). Type will be either the string 'POST' or 'GET' depending on if it is a POST or GET request. Parameters will be an object containing pairs of strings that are key value pairs. So the object literal `{'name':'sally','profession':'doctor'}` would be a valid input parameter `{'doStuff':function (){...}}` would not be legal because a function is not a string. Likewise `{'item':'book','count':50}` would not be legal because 50 is not a string.
