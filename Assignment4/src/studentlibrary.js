@@ -2,7 +2,7 @@
 function ajaxRequest(url, type, param) {
 
   var httpRequest = new XMLHttpRequest();
-  if (!httpRequest) {
+  if(!httpRequest) {
     throw 'HttpRequest Error.';
   }
 
@@ -11,15 +11,15 @@ function ajaxRequest(url, type, param) {
     var codeDetail;
     var response;
 
-    if (type === 'GET') {
+    if(type === 'GET') {
     url += '?' + stringify(param);
     httpRequest.onreadystatechange = function() {
-      if (this.readyState === 4) {
+      if(this.readyState === 4) {
         //response code to return
         code = httpRequest.status;
         codeDetail = httpRequest.statusText;
         response = httpRequest.responseText;
-        if (httpRequest.status === 200) {
+        if(httpRequest.status === 200) {
           success = true;
         }
         else {
@@ -30,14 +30,14 @@ function ajaxRequest(url, type, param) {
     httpRequest.open('GET', url, false);
     httpRequest.send();
   }
-  else if (type === 'POST') {
+  else if(type === 'POST') {
     httpRequest.onreadystatechange = function() {
-      if (this.readyState === 4) {
+      if(this.readyState === 4) {
         //response code to return
         code = httpRequest.status;
         codeDetail = httpRequest.statusText;
         response = httpRequest.responseText;
-        if (httpRequest.status === 200) {
+        if(httpRequest.status === 200) {
           success = true;
         }
         else {
@@ -62,7 +62,7 @@ function ajaxRequest(url, type, param) {
 //from lecture
 function stringify(obj) {
   var str = [];
-  for (var prop in obj) {
+  for(var prop in obj) {
       str.push(encodeURIComponent(prop) + '=' + encodeURIComponent(obj[prop]));
   }
   return str.join('&');
