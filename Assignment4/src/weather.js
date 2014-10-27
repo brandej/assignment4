@@ -21,18 +21,20 @@ function request(type) {
     throw 'HttpRequest Error.';
   }
   if(type != 'onload') {
-    var elem = document.getElementById("stateSelect");
+    var elem = document.getElementById('stateSelect');
     var selected = elem.options[elem.selectedIndex].value;
-     if(document.getElementById('city').value === '') { //implement better error handling
-      throw 'Empty City Search.'
+    //implement better error handling
+     if(document.getElementById('city').value === '') {
+      throw 'Empty City Search.';
      }
   }
 
   //return object
   var url = 'http://api.openweathermap.org/data/2.5/weather';
-  var cur = {}; 
+  var cur = {};
   if(type === 'onload') {
-    url += '?q=' + localStorage.getItem('city') + ',' + localStorage.getItem('state');
+    url += '?q=' + localStorage.getItem('city') +
+     ',' + localStorage.getItem('state');
   }
   else {
     url += '?q=' + document.getElementById('city').value + ',' + selected;
@@ -55,7 +57,9 @@ function request(type) {
   return cur;
 }
 
-//partially taken from https://developer.mozilla.org/en-US/docs/Traversing_an_HTML_table_with_JavaScript_and_DOM_Interfaces
+/*modified from:
+http://mzl.la/1tXS04d
+*/
 function generate_table(curWeather) {
   // get the reference for the body
   var body = document.getElementsByTagName('body')[0];
@@ -65,24 +69,24 @@ function generate_table(curWeather) {
   var tblBody = document.createElement('tbody');
 
   //creates header row
-  var row = document.createElement("tr");
+  var row = document.createElement('tr');
   //if(localStorage.getItem(localStorage.key(i)) != 'false') {
 
   //city header
-  var cellHead = document.createElement("th");
+  var cellHead = document.createElement('th');
   var cHeadText = document.createTextNode('City');
   cellHead.appendChild(cHeadText);
   row.appendChild(cellHead);
 
   //state header
-  var cellHead = document.createElement("th");
+  var cellHead = document.createElement('th');
   var cHeadText = document.createTextNode('State');
   cellHead.appendChild(cHeadText);
   row.appendChild(cellHead);
-  
+
   //temp header
   if(document.getElementsByName('temp')[0].checked === true) {
-    var cellHead = document.createElement("th");
+    var cellHead = document.createElement('th');
     var cHeadText = document.createTextNode('Temperature (F)');
     cellHead.appendChild(cHeadText);
     row.appendChild(cellHead);
@@ -90,7 +94,7 @@ function generate_table(curWeather) {
 
   //tempMax header
   if(document.getElementsByName('tempMax')[0].checked === true) {
-    var cellHead = document.createElement("th");
+    var cellHead = document.createElement('th');
     var cHeadText = document.createTextNode('Max Temp (F)');
     cellHead.appendChild(cHeadText);
     row.appendChild(cellHead);
@@ -98,7 +102,7 @@ function generate_table(curWeather) {
 
   //tempMin header
   if(document.getElementsByName('tempMin')[0].checked === true) {
-    var cellHead = document.createElement("th");
+    var cellHead = document.createElement('th');
     var cHeadText = document.createTextNode('Min Temp (F)');
     cellHead.appendChild(cHeadText);
     row.appendChild(cellHead);
@@ -106,11 +110,11 @@ function generate_table(curWeather) {
 
   //Wind Header
   if(document.getElementsByName('wind')[0].checked === true) {
-    var cellHead = document.createElement("th");
+    var cellHead = document.createElement('th');
     var cHeadText = document.createTextNode('Wind Speed (mps)');
     cellHead.appendChild(cHeadText);
     row.appendChild(cellHead);
-    var cellHead = document.createElement("th");
+    var cellHead = document.createElement('th');
     var cHeadText = document.createTextNode('Wind Direction (degrees)');
     cellHead.appendChild(cHeadText);
     row.appendChild(cellHead);
@@ -118,7 +122,7 @@ function generate_table(curWeather) {
 
   //add the row to the table
   tblBody.appendChild(row);
- 
+
   //creates content row
   row = document.createElement('tr');
   var cell = document.createElement('td');
@@ -126,7 +130,7 @@ function generate_table(curWeather) {
   cell.appendChild(cellText);
   row.appendChild(cell);
 
-  var elem = document.getElementById("stateSelect");
+  var elem = document.getElementById('stateSelect');
   var selected = elem.options[elem.selectedIndex].value;
   cell = document.createElement('td');
   cellText = document.createTextNode(selected);
@@ -135,21 +139,24 @@ function generate_table(curWeather) {
 
   if(document.getElementsByName('temp')[0].checked === true) {
     cell = document.createElement('td');
-    cellText = document.createTextNode(parseFloat(((curWeather.temp - 273.15) * 1.8 + 32)).toPrecision(4));    
+    cellText = document.createTextNode(parseFloat(
+      ((curWeather.temp - 273.15) * 1.8 + 32)).toPrecision(4));
     cell.appendChild(cellText);
     row.appendChild(cell);
   }
-  
+
   if(document.getElementsByName('tempMax')[0].checked === true) {
     cell = document.createElement('td');
-    cellText = document.createTextNode(parseFloat(((curWeather.tempMax - 273.15) * 1.8 + 32)).toPrecision(4));    
+    cellText = document.createTextNode(parseFloat(
+      ((curWeather.tempMax - 273.15) * 1.8 + 32)).toPrecision(4));
     cell.appendChild(cellText);
     row.appendChild(cell);
-  }  
+  }
 
   if(document.getElementsByName('tempMin')[0].checked === true) {
     cell = document.createElement('td');
-    cellText = document.createTextNode(parseFloat(((curWeather.tempMin - 273.15) * 1.8 + 32)).toPrecision(4));    
+    cellText = document.createTextNode(parseFloat(
+      ((curWeather.tempMin - 273.15) * 1.8 + 32)).toPrecision(4));
     cell.appendChild(cellText);
     row.appendChild(cell);
   }
@@ -157,15 +164,15 @@ function generate_table(curWeather) {
   if(document.getElementsByName('wind')[0].checked === true) {
     //speed
     cell = document.createElement('td');
-    cellText = document.createTextNode(curWeather.speed);    
+    cellText = document.createTextNode(curWeather.speed);
     cell.appendChild(cellText);
     row.appendChild(cell);
     //direction
     cell = document.createElement('td');
-    cellText = document.createTextNode(curWeather.direction);    
+    cellText = document.createTextNode(curWeather.direction);
     cell.appendChild(cellText);
-    row.appendChild(cell);   
-  }  
+    row.appendChild(cell);
+  }
 
   //add elements back into structure
   tblBody.appendChild(row);
@@ -174,15 +181,9 @@ function generate_table(curWeather) {
   body.appendChild(sec);
 }
 
-/*
-  localStorage.setItem('state', selected);
-  localStorage.setItem('temp', document.getElementsByName('temp')[0].checked);
-  localStorage.setItem('temp_max', document.getElementsByName('tempMin')[0].checked);
-  localStorage.setItem('temp_min', document.getElementsByName('tempMax')[0].checked);
-  localStorage.setItem('wind', document.getElementsByName('wind')[0].checked);
+/*modified from:
+http://mzl.la/1tXS04d
 */
-
-//partially taken from https://developer.mozilla.org/en-US/docs/Traversing_an_HTML_table_with_JavaScript_and_DOM_Interfaces
 function generateTableFromLocal(curWeather) {
   // get the reference for the body
   var body = document.getElementsByTagName('body')[0];
@@ -192,24 +193,24 @@ function generateTableFromLocal(curWeather) {
   var tblBody = document.createElement('tbody');
 
   //creates header row
-  var row = document.createElement("tr");
+  var row = document.createElement('tr');
   //if(localStorage.getItem(localStorage.key(i)) != 'false') {
 
   //city header
-  var cellHead = document.createElement("th");
+  var cellHead = document.createElement('th');
   var cHeadText = document.createTextNode('City');
   cellHead.appendChild(cHeadText);
   row.appendChild(cellHead);
 
   //state header
-  var cellHead = document.createElement("th");
+  var cellHead = document.createElement('th');
   var cHeadText = document.createTextNode('State');
   cellHead.appendChild(cHeadText);
   row.appendChild(cellHead);
-  
+
   //temp header
   if(localStorage.getItem('temp') === 'true') {
-    var cellHead = document.createElement("th");
+    var cellHead = document.createElement('th');
     var cHeadText = document.createTextNode('Temperature (F)');
     cellHead.appendChild(cHeadText);
     row.appendChild(cellHead);
@@ -217,7 +218,7 @@ function generateTableFromLocal(curWeather) {
 
   //tempMax header
   if(localStorage.getItem('temp_max') === 'true') {
-    var cellHead = document.createElement("th");
+    var cellHead = document.createElement('th');
     var cHeadText = document.createTextNode('Max Temp (F)');
     cellHead.appendChild(cHeadText);
     row.appendChild(cellHead);
@@ -225,7 +226,7 @@ function generateTableFromLocal(curWeather) {
 
   //tempMin header
   if(localStorage.getItem('temp_min') === 'true') {
-    var cellHead = document.createElement("th");
+    var cellHead = document.createElement('th');
     var cHeadText = document.createTextNode('Min Temp (F)');
     cellHead.appendChild(cHeadText);
     row.appendChild(cellHead);
@@ -233,11 +234,11 @@ function generateTableFromLocal(curWeather) {
 
   //Wind Header
   if(localStorage.getItem('wind') === 'true') {
-    var cellHead = document.createElement("th");
+    var cellHead = document.createElement('th');
     var cHeadText = document.createTextNode('Wind Speed (mps)');
     cellHead.appendChild(cHeadText);
     row.appendChild(cellHead);
-    var cellHead = document.createElement("th");
+    var cellHead = document.createElement('th');
     var cHeadText = document.createTextNode('Wind Direction (degrees)');
     cellHead.appendChild(cHeadText);
     row.appendChild(cellHead);
@@ -245,7 +246,7 @@ function generateTableFromLocal(curWeather) {
 
   //add the row to the table
   tblBody.appendChild(row);
- 
+
   /*creates content row*/
 
   //city
@@ -264,23 +265,26 @@ function generateTableFromLocal(curWeather) {
   //cur temp
   if(localStorage.getItem('temp') === 'true') {
     cell = document.createElement('td');
-    cellText = document.createTextNode(parseFloat(((curWeather.temp - 273.15) * 1.8 + 32)).toPrecision(4));    
+    cellText = document.createTextNode(parseFloat(
+      ((curWeather.temp - 273.15) * 1.8 + 32)).toPrecision(4));
     cell.appendChild(cellText);
     row.appendChild(cell);
   }
-  
+
   //temp max
   if(localStorage.getItem('temp_max') === 'true') {
     cell = document.createElement('td');
-    cellText = document.createTextNode(parseFloat(((curWeather.tempMax - 273.15) * 1.8 + 32)).toPrecision(4));    
+    cellText = document.createTextNode(parseFloat(
+      ((curWeather.tempMax - 273.15) * 1.8 + 32)).toPrecision(4));
     cell.appendChild(cellText);
     row.appendChild(cell);
-  }  
+  }
 
   //temp min
   if(localStorage.getItem('temp_min') === 'true') {
     cell = document.createElement('td');
-    cellText = document.createTextNode(parseFloat(((curWeather.tempMin - 273.15) * 1.8 + 32)).toPrecision(4));    
+    cellText = document.createTextNode(parseFloat(
+      ((curWeather.tempMin - 273.15) * 1.8 + 32)).toPrecision(4));
     cell.appendChild(cellText);
     row.appendChild(cell);
   }
@@ -289,15 +293,15 @@ function generateTableFromLocal(curWeather) {
   if(localStorage.getItem('wind') === 'true') {
     //speed
     cell = document.createElement('td');
-    cellText = document.createTextNode(curWeather.speed);    
+    cellText = document.createTextNode(curWeather.speed);
     cell.appendChild(cellText);
     row.appendChild(cell);
     //direction
     cell = document.createElement('td');
-    cellText = document.createTextNode(curWeather.direction);    
+    cellText = document.createTextNode(curWeather.direction);
     cell.appendChild(cellText);
-    row.appendChild(cell);   
-  }  
+    row.appendChild(cell);
+  }
 
   //add elements back into structure
   tblBody.appendChild(row);
@@ -319,12 +323,14 @@ function saveToLocal() {
   else {
     throw 'No City Entered';
   }
-  var el = document.getElementById("stateSelect");
+  var el = document.getElementById('stateSelect');
   var selected = el.options[el.selectedIndex].value;
 
   localStorage.setItem('state', selected);
   localStorage.setItem('temp', document.getElementsByName('temp')[0].checked);
-  localStorage.setItem('temp_max', document.getElementsByName('tempMin')[0].checked);
-  localStorage.setItem('temp_min', document.getElementsByName('tempMax')[0].checked);
+  localStorage.setItem('temp_max',
+   document.getElementsByName('tempMin')[0].checked);
+  localStorage.setItem('temp_min',
+   document.getElementsByName('tempMax')[0].checked);
   localStorage.setItem('wind', document.getElementsByName('wind')[0].checked);
 }
