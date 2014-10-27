@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="UTF-8">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script type ="text/javascript" src="weather.js"></script>
+    <title>Weather Assignment</title>
+  </head>
+  <body>
+    <section>
+      <form>
+        <fieldset>
+          <legend>Weather Search</legend>
+          <input type="search" name="city" id="city" placeholder="City">
+          <label>State:</label>
+          <select id ="stateSelect">
+            <option value="wa">WA</option>
+            <option value="or">OR</option>
+            <option value="ca">CA</option>
+            <option value="ma">MA</option>
+          </select>
+          <div class="wselect">Weather Measurements: 
+            <br><input type="checkbox" name="temp" value="temp">Current Temperature
+            <br><input type="checkbox" name="tempMin" value="temp_min">Min Temperature
+            <br><input type="checkbox" name="tempMax" value="temp_max">Max Temperature
+            <br><input type="checkbox" name="wind" value="wind">Wind
+          </div>
+          <input type="button" name="getweather" value="Get Weather" onclick="displayResults()">
+          <input type="button" name="save" onclick="saveToLocal()" value="Save Settings">
+        </fieldset>
+      </form>
+    </section>
+    <section>
+      <h1>Results:</h1>
+      <table>
+      </table>
+    </section>
+  </body>
+</html>
+
