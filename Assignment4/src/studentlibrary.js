@@ -23,10 +23,10 @@ function ajaxRequest(url, type, param) {
           success = true;
         }
         else {
-          success = false;        
+          success = false;
         }
       }
-    }
+    };
     httpRequest.open('GET', url, false);
     httpRequest.send();
   }
@@ -41,12 +41,13 @@ function ajaxRequest(url, type, param) {
           success = true;
         }
         else {
-          success = false;        
+          success = false;
         }
       }
-    }
+    };
     httpRequest.open('POST', url, false);
-    httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    httpRequest.setRequestHeader('Content-Type',
+      'application/x-www-form-urlencoded');
     httpRequest.send(stringify(param));
   }
 
